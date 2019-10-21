@@ -1,0 +1,126 @@
+/*
+ * @Author: Jack
+ * @Date: 2019-01-31 15:16:47
+ * @LastEditors: Jack
+ * @LastEditTime: 2019-01-31 15:18:49
+ * @Description: 写一些公共样式，定义主题颜色这些
+ */
+
+ @charset "utf-8";
+
+ /**
+  * Body
+  */
+ 
+ $body-line-height: 1.5;
+ 
+ /**
+  * Font
+  */
+ 
+ //Font Family
+ $font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+   "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+ 
+ //Font Size
+ $fz-moreLargeFour: 36px;
+ $fz-moreLargeThree: 30px;
+ $fz-moreLargeTwo: 24px;
+ $fz-moreLargeOne: 20px;
+ $fz-larger: 18px;
+ $fz-large: 16px;
+ $fz-normal: 14px;
+ $fz-small: 12px;
+ 
+ /**
+  * Color
+  */
+ 
+ // 常见颜色
+ $darker: #212121; // 大标题
+ $dark: #424242; // 站点默认文字颜色
+ $darkish: #828282; // 副标题
+ $blue: #1a7de1; // 链接色，高亮色
+ $darkblue: #0057c3; // 蓝色链接文字hover时候的更深一点的颜色
+ $silver: #b6bbc6; // 银色，组件一些图标的默认颜色
+ $gray: #bdbdbd; // 灰色文字颜色
+ $grayDisabled: #ccd0d7; // 灰色禁用
+ $white: #fff;
+ $green: #5bb25f; // 成功文字颜色，成功提示背景色
+ $orange: #f1bc37; // 用在警示处
+ $darkOrange: #f0b217;
+ $red: #ff7f5a; // 出错使用
+ $light: #fafafa; // 很轻的灰色，常做背景色使用
+ 
+ // 边框控制
+ $borderNormal: #e0e0e0;
+ $borderHover: #d0d0d5;
+ $borderFocus: $orange;
+ 
+ // 背景色
+ $backgroundBlue: $blue;
+ $backgroundBlueHover: #0160d5;
+ $backgroundBlueActive: #0057c3;
+ 
+ $backgroundOrange: $orange;
+ $backgroundOrangeHover: $darkOrange;
+ $backgroundOrangeActive: $darkOrange;
+ 
+ $backgroundGreen: $green;
+ $backgroundGreenHover: #00dba2;
+ $backgroundGreenActive: #00bf8e;
+ 
+ $backgroundRed: $red;
+ $backgroundRedHover: #ff7772;
+ $backgroundRedActive: #dc5652;
+ 
+ // 列表hover色，偏白
+ $backgroundList: $white;
+ $backgroundListHover: rgba(#f7f6f6, 0.5);
+ $backgroundListSelected: #f7f6f6;
+ 
+ // 白色背景hover出现的淡灰色
+ $backgroundHover: #f0f0f2;
+ 
+ // 黑色tips背景色
+ $backgroundDark: #373c42;
+ 
+ // UI组件的圆角大小
+ $borderRadius: 2px;
+ 
+ $dna-yellow: $orange;
+ 
+ $title-color: $darker;
+ $subtitle-color: $dark;
+ $content-color: $darkish;
+ 
+ $orange-color: #e99c29;
+ $blue-color: $blue;
+ $red-color: #ff6767;
+ $white-color: $white;
+ $second-color: #eeeeee;
+ $gray-color: $gray;
+ $little-color: #c3c3c3;
+ 
+ $third-color: #333333;
+ 
+ $border-color: #d8d8d8;
+ 
+ $service-second-color: #f6f9fd;
+ $service-third-color: #4a4a4a;
+ 
+ $shadow-color: $backgroundListSelected;
+ 
+ $bg-gray: $light;
+ $bg-white: $white;
+ $bg-yellow: #f9d676;
+ 
+ $bg-second: #000000;
+ 
+ $bg-line: $borderNormal;
+ 
+ $tips-color: $blue;
+ 
+ // $new-red-color: #ff7f5a ;
+ $new-red-color: $red;
+ 

@@ -1,0 +1,6 @@
+This folder is used to manage the channels.
+ipcMain and ipcRenderer use the same const channel name.
+e.g.
+ipcMain.on('TEST', (e, data) => {
+  ...
+})

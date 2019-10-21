@@ -1,0 +1,1 @@
+This folder is used to manage all api requests with pre-handled request.
