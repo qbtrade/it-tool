@@ -5,10 +5,10 @@
  * @LastEditTime: 2019-09-06 13:46:35
  * @Description: 
  */
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow, Menu,Tray,globalShortcut } from 'electron'
 import { productName } from '../../package.json'
 import './channel/index'
-
+import path from 'path'
 // set app name
 app.setName(productName)
 
@@ -90,8 +90,9 @@ function createWindow() {
     mainWindow.focus()
   })
 
-  mainWindow.on('closed', () => {
-    console.log('closed')
+  mainWindow.on('close', event => {
+    event.preventDefault()
+    mainWindow.hide()
   })
 }
 
@@ -101,7 +102,21 @@ app.on('ready', () => {
   if (isDev) {
     installDevTools()
   }
-
+  let tray = new Tray(path.join(__dirname, '../../_icons/icon.ico'));
+   const contextMenu = Menu.buildFromTemplate([
+      {label: '退出', click: () => {mainWindow.destroy()}},
+    ])
+    tray.setToolTip('it-tools')
+    tray.setContextMenu(contextMenu)
+    tray.on('click', ()=>{
+      mainWindow.show()
+      mainWindow.isVisible() ?mainWindow.setSkipTaskbar(false):mainWindow.setSkipTaskbar(true);
+    })
+    globalShortcut.register('CommandOrControl+i', () => {
+      mainWindow.isVisible()?mainWindow.hide():mainWindow.show()
+      mainWindow.isVisible() ?mainWindow.setSkipTaskbar(false):mainWindow.setSkipTaskbar(true);
+    })
+    // mainWindow.hide()
   // mainWindow.webContents.openDevTools()
 })
 
@@ -136,6 +151,7 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
+
 
 const sendMenuEvent = async data => {
   mainWindow.webContents.send('change-view', data)
