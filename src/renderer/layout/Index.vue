@@ -31,6 +31,7 @@ import * as fs from 'fs'
 import {exec} from 'shelljs'
 // import ResizeMixin from './mixin/resizeHandler'
 import cmd from 'node-cmd'
+import {ipcRenderer,remote} from 'electron'
 export default {
   name: 'APP',
   components: {
@@ -68,11 +69,22 @@ export default {
     }
   },
   created(){
-    let filePath = process.env.NODE_ENV === 'production' ? path.join(__dirname, '../../src/renderer/assets/configs/tools.yml') : path.join(__dirname, '../assets/configs/tools.yml')
+    document.addEventListener('keydown', event => {
+          if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'KeyK') {
+            console.log('sending opendevtools')
+            ipcRenderer.send('openDevTools', remote.getCurrentWindow().id)
+          }
+        })
+        // remote.getCurrentWindow().webContents.openDevTools()
+    let filePath = process.env.NODE_ENV === 'production' ? path.join(__dirname, '../src/renderer/assets/configs/tools.yml') : path.join(__dirname, '../assets/configs/tools.yml')
+    console.log(filePath)
     let tools = yaml.safeLoad(fs.readFileSync(filePath, 'utf8'))
     for(let key in tools){
       this.tools.push({key,cmd:tools[key]})
     }
+    
+    // ipcRenderer.send('openDevTools',remote.getCurrentWindow().id)
+    
   }
 }
 </script>

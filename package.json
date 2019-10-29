@@ -13,7 +13,8 @@
     "files": [
       "dist/*",
       "_icons/*",
-      "static/*"
+      "static/*",
+      "src/renderer/assets/configs/tools.yml"
     ],
     "directories": {
       "output": "build"

@@ -5,7 +5,7 @@
  * @LastEditTime: 2019-09-06 13:46:35
  * @Description: 
  */
-import { app, BrowserWindow, Menu,Tray,globalShortcut } from 'electron'
+import { app, BrowserWindow, Menu,Tray,globalShortcut,ipcMain } from 'electron'
 import { productName } from '../../package.json'
 import './channel/index'
 import path from 'path'
@@ -97,12 +97,19 @@ function createWindow() {
 }
 
 app.on('ready', () => {
+  ipcMain.on('openDevTools',(e,id)=>{
+    console.log('opeinging devtools',id)
+    BrowserWindow.fromId(id).webContents.openDevTools()
+  })
+  console.log('ready')
   createWindow()
 
   if (isDev) {
     installDevTools()
   }
-  let tray = new Tray(path.join(__dirname, '../../_icons/icon.ico'));
+  let iconPath=process.env.NODE_ENV==='production'?path.join(__dirname, '../_icons/icon.ico'):path.join(__dirname, '../../_icons/icon.ico')
+  console.log('path',iconPath)
+  let tray = new Tray(iconPath);
    const contextMenu = Menu.buildFromTemplate([
       {label: '退出', click: () => {mainWindow.destroy()}},
     ])
@@ -113,6 +120,7 @@ app.on('ready', () => {
       mainWindow.isVisible() ?mainWindow.setSkipTaskbar(false):mainWindow.setSkipTaskbar(true);
     })
     globalShortcut.register('CommandOrControl+i', () => {
+      console.log('shortcut')
       mainWindow.isVisible()?mainWindow.hide():mainWindow.show()
       mainWindow.isVisible() ?mainWindow.setSkipTaskbar(false):mainWindow.setSkipTaskbar(true);
     })
