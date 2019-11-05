@@ -13,8 +13,7 @@
     "files": [
       "dist/*",
       "_icons/*",
-      "static/*",
-      "src/renderer/assets/configs/tools.yml"
+      "static/*"
     ],
     "directories": {
       "output": "build"
@@ -42,6 +41,7 @@
   },
   "dependencies": {
     "bulma-pro": "^0.1.8",
+    "element-ui": "^2.12.0",
     "js-yaml": "^3.13.1",
     "material-design-icons": "^3.0.1",
     "node-cmd": "^3.0.0",

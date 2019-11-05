@@ -2,10 +2,17 @@
  * @Author: Jack
  * @Date: 2019-08-26 15:49:48
  * @LastEditors: Jack
- * @LastEditTime: 2019-09-06 13:46:35
- * @Description: 
+ * @LastEditTime: 2019-11-05 17:48:05
+ * @Description:
  */
-import { app, BrowserWindow, Menu,Tray,globalShortcut,ipcMain } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  Tray,
+  globalShortcut,
+  ipcMain,
+} from 'electron'
 import { productName } from '../../package.json'
 import './channel/index'
 import path from 'path'
@@ -97,34 +104,46 @@ function createWindow() {
 }
 
 app.on('ready', () => {
-  ipcMain.on('openDevTools',(e,id)=>{
-    console.log('opeinging devtools',id)
+  ipcMain.on('openDevTools', (e, id) => {
     BrowserWindow.fromId(id).webContents.openDevTools()
   })
-  console.log('ready')
+
   createWindow()
 
   if (isDev) {
     installDevTools()
   }
-  let iconPath=process.env.NODE_ENV==='production'?path.join(__dirname, '../_icons/icon.ico'):path.join(__dirname, '../../_icons/icon.ico')
-  console.log('path',iconPath)
-  let tray = new Tray(iconPath);
-   const contextMenu = Menu.buildFromTemplate([
-      {label: '退出', click: () => {mainWindow.destroy()}},
-    ])
-    tray.setToolTip('it-tools')
-    tray.setContextMenu(contextMenu)
-    tray.on('click', ()=>{
-      mainWindow.show()
-      mainWindow.isVisible() ?mainWindow.setSkipTaskbar(false):mainWindow.setSkipTaskbar(true);
-    })
-    globalShortcut.register('CommandOrControl+i', () => {
-      console.log('shortcut')
-      mainWindow.isVisible()?mainWindow.hide():mainWindow.show()
-      mainWindow.isVisible() ?mainWindow.setSkipTaskbar(false):mainWindow.setSkipTaskbar(true);
-    })
-    // mainWindow.hide()
+
+  let iconPath =
+    process.env.NODE_ENV === 'production'
+      ? path.join(__dirname, '../_icons/icon.ico')
+      : path.join(__dirname, '../../_icons/icon.ico')
+  console.log('path', iconPath)
+  let tray = new Tray(iconPath)
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: '退出',
+      click: () => {
+        mainWindow.destroy()
+      },
+    },
+  ])
+  tray.setToolTip('it-tools')
+  tray.setContextMenu(contextMenu)
+  tray.on('click', () => {
+    mainWindow.show()
+    mainWindow.isVisible()
+      ? mainWindow.setSkipTaskbar(false)
+      : mainWindow.setSkipTaskbar(true)
+  })
+  globalShortcut.register('CommandOrControl+i', () => {
+    console.log('shortcut')
+    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+    mainWindow.isVisible()
+      ? mainWindow.setSkipTaskbar(false)
+      : mainWindow.setSkipTaskbar(true)
+  })
+  // mainWindow.hide()
   // mainWindow.webContents.openDevTools()
 })
 
@@ -159,7 +178,6 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
-
 
 const sendMenuEvent = async data => {
   mainWindow.webContents.send('change-view', data)
