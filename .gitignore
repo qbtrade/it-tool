@@ -16,3 +16,5 @@ tmp/
 dist
 coverage
 __coverage__
+
+.history/
