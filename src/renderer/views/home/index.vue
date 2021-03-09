@@ -15,7 +15,8 @@
         ></el-input>
       </el-col>
       <el-col :span="24">
-        <el-button @click='runCmd'>Exec</el-button>
+        <el-button @click="runCmd">Exec</el-button>
+        <el-button @click="runCmd2">Exec2</el-button>
       </el-col>
     </el-row>
   </div>
@@ -33,6 +34,9 @@ export default {
   computed: {},
   created() {},
   methods: {
+    runCmd2() {
+      console.log('cmd2')
+    },
     runCmd() {
       exec(this.getcmdLine(this.command), (code, stdout, stderr) => {
         console.log('Exit code:', code)
