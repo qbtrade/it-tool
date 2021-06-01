@@ -1,1 +1,4 @@
-modify a.go
+package main
+
+func main() {
+}
